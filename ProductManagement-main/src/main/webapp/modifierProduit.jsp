@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="Model.Produit" %>
+<%
+    Produit produit = (Produit) request.getAttribute("produit");
+    if (produit == null) {
+        produit = new Produit();
+    }
+%>
 <html>
 <head>
     <title>Modifier le Produit</title>
@@ -39,29 +46,29 @@
 
     <form action="produits" method="post">
         <input type="hidden" name="operation" value="update"/>
-        <input type="hidden" name="id" value="${produit.id}"/>
+        <input type="hidden" name="id" value="<%=produit.getId()%>"/>
          <div class="form-group">
             <label>Nom :</label>
-            <input type="text" name="nom" value="${produit.nom}" required/>
+            <input type="text" name="nom" value="<%= produit.getNom() %>" required/>
         </div>
          <div class="form-group">
             <label>Description :</label>
-            <textarea name="description" required>${produit.description}</textarea>
+            <textarea name="description" required><%= produit.getDescription() != null ? produit.getDescription() : "" %></textarea>
         </div>
          <div class="form-group">
             <label>Prix :</label>
-            <input type="number" step="0.01" name="prix" value="${produit.prix}" required/>
+            <input type="number" step="0.01" name="prix" value="<%= produit.getPrix() %>" required/>
         </div>
          <div class="form-group">
             <label>Image (URL) :</label>
-            <input type="text" name="image" value="${produit.image}" required/>
+            <input type="text" name="image" value="<%= produit.getImage()%>" required/>
         </div>
          <div class="form-group">
             <input type="submit" value="Modifier"/>
         </div>
-        </div>
+
     </form>
     <a href="produits?action=list">Retour à la liste</a>
-    </div>
+ </div>
 </body>
 </html>

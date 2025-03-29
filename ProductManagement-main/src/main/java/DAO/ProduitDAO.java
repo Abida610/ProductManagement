@@ -54,6 +54,8 @@ public class ProduitDAO implements IGestionProduitDAO {
     }
     @Override
     public void ajouterProduit(Produit p) {
+        System.out.println("Attempting to add product: " + p.getNom());
+
         String sql = "INSERT INTO produits (nom, description, prix, image) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -68,6 +70,7 @@ public class ProduitDAO implements IGestionProduitDAO {
     }
     @Override
     public void modifierProduit(Produit p) {
+        System.out.println("Attempting to update product ID: " + p.getId());
         String sql = "UPDATE produits SET nom = ?, description = ?, prix = ?, image = ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

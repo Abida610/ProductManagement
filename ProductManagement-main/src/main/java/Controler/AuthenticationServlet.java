@@ -27,10 +27,10 @@ public class AuthenticationServlet extends HttpServlet {
             sessionCookie.setPath(request.getContextPath());
             response.addCookie(sessionCookie);
 
-            response.sendRedirect(request.getContextPath() + "/listeProduits.jsp");
+            response.sendRedirect(request.getContextPath() + "/produits");
         }
         else {
-            System.err.println("Identifiants");
+            System.err.println("Veuillez vérifier vos credentials");
 
             request.setAttribute("error", "Identifiants incorrects");
             request.getRequestDispatcher("/login.jsp").forward(request, response);

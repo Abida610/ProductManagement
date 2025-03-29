@@ -66,6 +66,7 @@ public class ProduitServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             Produit produit = produitDAO.getProduitById(id);
             if (produit != null) {
+                System.out.println("DEBUG - Produit found: " + produit.getNom());
                 request.setAttribute("produit", produit);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("modifierProduit.jsp");
                 dispatcher.forward(request, response);
@@ -73,6 +74,7 @@ public class ProduitServlet extends HttpServlet {
                 response.sendRedirect("produits?action=list");
             }
         } catch (NumberFormatException e) {
+            e.printStackTrace();
             response.sendRedirect("produits?action=list");
         }
     }
@@ -119,7 +121,7 @@ public class ProduitServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("user") == null) {
+        if (session == null || session.getAttribute("username") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
@@ -161,7 +163,7 @@ public class ProduitServlet extends HttpServlet {
             Produit produit = new Produit(id, nom, description, prix, image);
             produitDAO.modifierProduit(produit);
         } catch (NumberFormatException e) {
-            // Log erreur si nécessaire
+            e.printStackTrace();
         }
     }
 

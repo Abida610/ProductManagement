@@ -51,7 +51,7 @@
 <body>
 <div class="container">
     <div class="header">
-<h1>Liste des Produits!</h1>
+<h1>Liste des Produits</h1>
 <div>
     <a href="<%= request.getContextPath() %>/logout" class="btn">Déconnexion</a>
     </div>

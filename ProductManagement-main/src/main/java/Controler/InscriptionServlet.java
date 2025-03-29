@@ -28,7 +28,7 @@ public class InscriptionServlet extends HttpServlet {
             user.inscrire(newUser);
             HttpSession session = request.getSession();
             session.setAttribute("user", newUser);
-            response.sendRedirect("listeProduits.jsp");
+            response.sendRedirect(request.getContextPath()+"/produits");
         } catch (IllegalStateException e) {
             System.err.println("ERREUR INSCRIPTION: " + e.getMessage());
             e.printStackTrace();
