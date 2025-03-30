@@ -1,5 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page import="Model.Produit" %>
+<%
+    Produit produit = (Produit) request.getAttribute("produit");
+    if (produit == null) {
+        produit = new Produit();
+    }
+%>
 <html>
 <head>
     <title>Détails du Produit</title>
@@ -29,13 +35,13 @@
 <div class="container">
 
     <h1>Détails du Produit</h1>
-    <p><strong>ID :</strong> ${produit.id}</p>
-    <p><strong>Nom :</strong> ${produit.nom}</p>
-    <p><strong>Description :</strong> ${produit.description}</p>
-    <p><strong>Prix :</strong> ${produit.prix}</p>
+    <p><strong>ID :</strong> "<%=produit.getId()%>"</p>
+    <p><strong>Nom :</strong> "<%=produit.getNom()%>"</p>
+    <p><strong>Description :</strong> "<%=produit.getDescription()%>"</p>
+    <p><strong>Prix :</strong> "<%=produit.getPrix()%>"</p>
     <p>
         <strong>Image :</strong><br/>
-        <img src="${produit.image}" alt="${produit.nom}" width="200"/>
+        <img src="<%=produit.getImage()%>" alt="<%=produit.getNom()%>" width="200"/>
     </p>
     <a href="produits?action=list">Retour à la liste</a>
 </div>

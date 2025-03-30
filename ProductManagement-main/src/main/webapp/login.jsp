@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -107,12 +106,16 @@
 <body>
 <div class="auth-container">
     <h1>Connexion</h1>
-   <c:if test="${not empty error}">
-
-
-            ${error}
-
-        </c:if>
+    <%
+               String error = (String) request.getAttribute("error");
+               if (error != null) {
+           %>
+                   <div class="error-message">
+                       <%= error %>
+                   </div>
+           <%
+               }
+           %>
 
     <form action="<%= request.getContextPath() %>/auth" method="post">
         <div class="form-group">

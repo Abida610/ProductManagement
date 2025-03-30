@@ -27,12 +27,14 @@ public class InscriptionServlet extends HttpServlet {
             User newUser = new User(username, password);
             user.inscrire(newUser);
             HttpSession session = request.getSession();
-            session.setAttribute("user", newUser);
+            session.setAttribute("username", newUser);
+            session.setMaxInactiveInterval(30*60);
             response.sendRedirect(request.getContextPath()+"/produits");
         } catch (IllegalStateException e) {
             System.err.println("ERREUR INSCRIPTION: " + e.getMessage());
             e.printStackTrace();
             request.setAttribute("error", e.getMessage());
+            request.setAttribute("username", username);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
         }
     }
