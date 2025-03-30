@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=ecommerce;authenticationScheme=NTLM;encrypt=false;";
-    private static final String USER = "abida";
-    private static final String PASSWORD = "maryem222";
+    private static final String USER = "username";
+    private static final String PASSWORD = "password";
 
     public static Connection getConnection() throws SQLException {
         try {
